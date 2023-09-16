@@ -32,29 +32,19 @@ function Home() {
         </div>
       </div>
 
-
-      <div className=' flex flex-row'>
-      <div className="bg-cover bg-no-repeat bg-center h-screen w-1/2" style={backgroundImageStyle2}>
-           
-      </div>
-
-      <span className='w-1/2 text-red-800 text-6xl dark:text-white pt-56 font-black'>
+      <div className='flex flex-col md:flex-row'>
+        <div className="bg-cover bg-no-repeat bg-center h-screen md:w-1/2" style={backgroundImageStyle2}></div>
+        <span className='w-full md:w-1/2 text-red-800 text-6xl dark:text-white pt-56 font-black'>
           Our passion for pizza is as deep as the cheese on your favorite pie.
-      </span>
-      </div>
-
-
-      <div className=' flex flex-row'>
-        <span className='w-1/2 text-red-800 text-6xl dark:text-white pt-56 font-black'>
-        Each pizza tells a story. Discover yours.
         </span>
-
-        <div className="bg-cover bg-no-repeat bg-center h-screen w-1/2" style={backgroundImageStyle3}>
-           
-        </div>
       </div>
 
-
+      <div className='flex flex-col-reverse md:flex-row'>
+        <span className='w-full md:w-1/2 text-red-800 text-6xl dark:text-white pt-56 font-black'>
+          Each pizza tells a story. Discover yours.
+        </span>
+        <div className="bg-cover bg-no-repeat bg-center h-screen md:w-1/2" style={backgroundImageStyle3}></div>
+      </div>
     </>
   );
 }
