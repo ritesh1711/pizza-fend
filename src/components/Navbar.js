@@ -1,30 +1,43 @@
+// Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <header className="bg-black p-4 font-serif text-3xl fixed w-full">
+    <header className="bg-black p-4 font-serif text-3xl h-56">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-white text-2xl font-extrabold font-serif text-5xl sm:text-6xl">
+          <Link to="/" className="text-white text-2xl font-extrabold font-serif text-8xl">
             FlavorWagon Express
           </Link>
-          <nav className="flex space-x-4">
-            <Link to="/home" className="text-white hover:text-gray-300 text-4xl sm:text-5xl">
-              HOME
-            </Link>
-            <Link to="/menu" className="text-white hover:text-gray-300 text-4xl sm:text-5xl">
-              MENU
-            </Link>
-            <Link to="/cart" className="text-white hover:text-gray-300 text-4xl sm:text-5xl">
-              CART
-            </Link>
-            <Link to="/login" className="text-white hover:text-gray-300 text-4xl sm:text-5xl">
-              LOGIN
-            </Link>
-            <Link to="/register" className="text-white hover:text-gray-300 text-4xl sm:text-5xl">
-              REGISTER
-            </Link>
+          <nav>
+            <ul className="flex space-x-4">
+              <li>
+                <Link to="/home" className="text-white hover:text-gray-300 pr-3 text-4xl">
+                  HOME
+                </Link>
+              </li>
+              <li>
+                <Link to="/menu" className="text-white hover:text-gray-300 pr-3 text-4xl">
+                  MENU
+                </Link>
+              </li>
+              <li>
+                <Link to="/cart" className="text-white hover:text-gray-300 pr-3 text-4xl">
+                  CART
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="text-white hover:text-gray-300 pr-3 text-4xl">
+                  LOGIN
+                </Link>
+              </li>
+              <li>
+                <Link to="/register" className="text-white hover:text-gray-300 pr-3 text-4xl">
+                  REGISTER
+                </Link>
+              </li>
+            </ul>
           </nav>
         </div>
       </div>
