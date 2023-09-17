@@ -1,4 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import AboutUs from '../components/aboutus';
+import Footer from '../components/Footer';
+
+
+
 
 function Home() {
   const backgroundImageStyle1 = {
@@ -25,10 +31,17 @@ function Home() {
   return (
     <>
       <div className="bg-cover bg-no-repeat bg-center h-screen" style={backgroundImageStyle1}>
-        <div className='text-gray-900 text-9xl dark:text-white pt-56 font-black'>
+        <div className='text-gray-900 text-9xl dark:text-white pt-52 font-black'>
           <span className='text-shadow-xl text-shadow-blue-dark'>
             Savor the cheesy goodness with every bite.
           </span>
+        </div>
+        <div className='pt-5'>
+          <Link to="/menu">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-md text-4xl">
+            ORDER NOW
+          </button>
+        </Link>
         </div>
       </div>
 
@@ -45,7 +58,7 @@ function Home() {
 
 
       <div className=' flex flex-row'>
-        <span className='w-1/2 text-red-800 text-6xl dark:text-white pt-56 font-black'>
+        <span className='w-1/2 text-red-800 text-6xl dark:text-white pt-80 font-black'>
         Each pizza tells a story. Discover yours.
         </span>
 
@@ -53,7 +66,8 @@ function Home() {
            
         </div>
       </div>
-
+      <AboutUs />
+      <Footer />
 
     </>
   );

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <header className="bg-black p-4 font-serif text-3xl h-56">
-      <div className="container mx-auto">
+    <header className="bg-black p-4 font-serif text-3xl h-46 fixed w-full opacity-95">
+      <div >
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-white text-2xl font-extrabold font-serif text-8xl">
+          <Link to="/" className="text-white text-2xl font-extrabold font-serif text-6xl">
             FlavorWagon Express
           </Link>
           <nav>
