@@ -3,6 +3,7 @@ import { getallpizzasreducers } from './reducers/pizzareducers';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+// Combine your reducers, using 'getallpizzasreducers' as the key
 const finalReducer = combineReducers({
   getallpizzasreducers: getallpizzasreducers,
 });

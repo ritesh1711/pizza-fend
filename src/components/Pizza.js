@@ -1,36 +1,38 @@
 import React, { useState } from 'react';
 
 export default function Pizza({ pizza }) {
-  const [quantity, setQuantity] = useState(1)
-  const [varient, setVarient] = useState('small')
+  const [quantity, setQuantity] = useState(1);
+  const [variant, setVariant] = useState('small');
 
-  
+  // Calculate the price based on the selected variant and quantity
+  const calculatePrice = () => {
+    const price = pizza.prices[0][variant];
+    return price * quantity;
+  };
 
   return (
-    <div   className=' shadow-md p-3 mb-5 bg-white-rounded'>
-      <h1><b>{pizza.name}</b></h1>
+    <div className='shadow-md p-3 mb-5 bg-white rounded'>
+      <h1 className='text-2xl font-semibold mb-3'>{pizza.name}</h1>
       <img
         src={pizza.image}
-        className="img-fluid"
-        style={{ height: '200px', width: '200px', marginLeft: '150px' }}
+        className="h-48 w-48 mx-auto"
         alt={pizza.name}
       />
 
       <div className="flex flex-row pt-5">
-        <div className="w-100 pl-24">
-          <p className='pb-2'>Variants</p>
-          <select className='block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400' value={varient} onChange={(e)=>{setVarient(e.target.value)}}>
-            {pizza.varients.map(varient=>{
-                return  <option key={varient} value={varient}>
-                          {varient}
-                        </option>
-            })}
+        <div className="w-1/2 pr-4">
+          <p className='text-lg font-medium mb-2'>Variants</p>
+          <select className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400' value={variant} onChange={(e) => setVariant(e.target.value)}>
+            {pizza.variants.map((variant) => (
+              <option key={variant} value={variant}>
+                {variant}
+              </option>
+            ))}
           </select>
         </div>
-
-        <div className="w-100 pl-32">
-          <p className='pb-2'>Quantity</p>
-          <select className='block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400' value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+        <div className="w-1/2">
+          <p className='text-lg font-medium mb-2'>Quantity</p>
+          <select className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400' value={quantity} onChange={(e) => setQuantity(e.target.value)}>
             {[...Array(10).keys()].map((i) => (
               <option key={i + 1} value={i + 1}>
                 {i + 1}
@@ -40,19 +42,20 @@ export default function Pizza({ pizza }) {
         </div>
       </div>
 
-      <div className="flex-container pl-16   w-100     ">
-        <div className='pt-5'>
-          <h1>Price : {pizza.prices[0][varient] * quantity} RS/-</h1>
+      <div className="flex mt-5">
+        <div className='w-1/2'>
+          <h1 className='text-xl font-semibold text-blue-500'>Price:</h1>
         </div>
-
-        <div className='pl-28 pt-4'>
-          <button className='btn w-100 text-white  py-1 px-1 font-bold rounded-md'>
-            Add to Cart
-          </button>
+        <div className='w-1/2'>
+          <h1 className='text-xl font-semibold'>{calculatePrice()}</h1>
         </div>
       </div>
 
-      
+      <div className='mt-4'>
+        <button className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full'>
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 }

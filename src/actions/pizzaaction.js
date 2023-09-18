@@ -9,6 +9,10 @@ export const getallpizzas = () => async (dispatch) => {
     dispatch({ type: 'GET_PIZZA_SUCCESS', payload: response.data });
   } catch (error) {
     console.error(error);
-    dispatch({ type: 'GET_PIZZA_FAILED', payload: error });
+
+    // Improved error handling: Wrap the error in a structured format
+    const errorMessage = error.response?.data?.message || 'An error occurred while fetching pizza data.';
+    
+    dispatch({ type: 'GET_PIZZA_FAILED', payload: errorMessage });
   }
 };

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -12,15 +12,11 @@ export default function Footer() {
         </div>
         <div className='pt-5'>
             <Link to="/menu">
-                <button className='text-black pt-2 bg-white   font-bold py-2 px-6 rounded-md text-4xl'>
+                <button className='text-black pt-2 bg-white font-bold py-2 px-6 rounded-md text-4xl'>
                     MENU
                 </button>
             </Link>
         </div>
-
-
-       
-        
     </footer>
   )
 }

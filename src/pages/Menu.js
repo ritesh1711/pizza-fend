@@ -1,40 +1,42 @@
-import React, { useEffect , useState } from 'react';
-import pizzas from '../pizzadata';
-import { UseSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Pizza from '../components/Pizza';
 import { getallpizzas } from '../actions/pizzaaction';
 
 export default function Menu() {
-  // Helper function to chunk pizzas into groups of 3
-  const chunkPizzas = (arr, chunkSize) => {
-    const chunked = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      chunked.push(arr.slice(i, i + chunkSize));
-    }
-    return chunked;
-  };
+  const dispatch = useDispatch();
 
-  // Chunk the pizzas into groups of 3
+  const { pizzas, error, loading } = useSelector((state) => state.getallpizzasreducers);
 
-  const pizzaGroups = chunkPizzas(pizzas, 3);
-  
-  const dispatch =useDispatch()
-  useEffect(()=>{
-        dispatch(getallpizzas())
-    })
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(getallpizzas());
+      } catch (err) {
+        console.error('Error fetching pizzas:', err);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   return (
-    <div className='pt-28'>
-      {pizzaGroups.map((group, index) => (
-        <div className="flex flex-row text-extrabold" key={index}>
-          {group.map((pizza) => (
-            <div className="w-1/3 pb-24 text-extrabold" key={pizza.name}>
-              <Pizza pizza={pizza} />
+    <div className='pt-20'>
+      {loading ? (
+        <h1 className='text-3xl font-bold text-center'>Loading...</h1>
+      ) : error ? (
+        <h1 className='text-3xl font-bold text-center'>{error}</h1>
+      ) : (
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {pizzas.map((pizza) => (
+            <div className='bg-white shadow-md rounded-lg' key={pizza._id}>
+              <div className='p-4'>
+                <Pizza pizza={pizza} />
+              </div>
             </div>
           ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }

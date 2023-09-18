@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Pizza = require('../modals/pizzamodal');
 
-router.get('/getallpizzas', async (req, res) => {
+router.get('/getpizzas', async (req, res) => { // Updated route path to '/getpizzas'
     try {
         const pizzas = await Pizza.find({});
         res.send(pizzas);

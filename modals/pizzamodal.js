@@ -11,6 +11,6 @@ const pizzaSchema = mongoose.Schema({
     timestamps: true
 });
 
-const Pizza = mongoose.model("Pizza", pizzaSchema); // Use "Pizza" as the model name
+const PizzaModel = mongoose.model("Pizza", pizzaSchema); // Use "Pizza" as the model name
 
-module.exports = Pizza;
+module.exports = PizzaModel;
