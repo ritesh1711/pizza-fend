@@ -5,10 +5,18 @@ export default function Pizza({ pizza }) {
   const [variant, setVariant] = useState('small');
 
   // Calculate the price based on the selected variant and quantity
-  const calculatePrice = () => {
-    const price = pizza.prices[0][variant];
-    return price * quantity;
-  };
+const calculatePrice = () => {
+  const selectedVariantPrice = pizza.prices.find(
+    (price) => price[variant.toLowerCase()] !== undefined
+  );
+
+  if (selectedVariantPrice) {
+    return selectedVariantPrice[variant.toLowerCase()] * quantity;
+  } else {
+    return 0; // Handle the case when the variant is not found
+  }
+};
+
 
   return (
     <div className='shadow-md p-3 mb-5 bg-white rounded'>
