@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
   res.send('Server working');
 });
 
+app.use('/', (req, res) => {
+  res.JSON('HELLO');
+});
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
