@@ -1,8 +1,10 @@
-// Navbar.js
+
+import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+  const cartstate = useSelector(state=>state.cartreducer)
   return (
     <header className="bg-black p-4 font-serif text-3xl h-46 fixed w-full opacity-95">
       <div >
@@ -24,7 +26,7 @@ function Navbar() {
               </li>
               <li>
                 <Link to="/cart" className="text-white hover:text-gray-300 pr-3 text-4xl">
-                  CART
+                  CART {cartstate.cartitems.length}
                 </Link>
               </li>
               <li>

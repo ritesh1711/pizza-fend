@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addtocart } from '../actions/cartactions';
+import { cartreducer } from '../reducers/cartreducer';
+
 
 export default function Pizza({ pizza }) {
   const [quantity, setQuantity] = useState(1);
   const [variant, setVariant] = useState('small');
 
   // Calculate the price based on the selected variant and quantity
-const calculatePrice = () => {
-  const selectedVariantPrice = pizza.prices.find(
-    (price) => price[variant.toLowerCase()] !== undefined
-  );
+  const calculatePrice = () => {
+    const selectedVariantPrice = pizza.prices.find(
+      (price) => price[variant.toLowerCase()] !== undefined
+    );
 
-  if (selectedVariantPrice) {
-    return selectedVariantPrice[variant.toLowerCase()] * quantity;
-  } else {
-    return 0; // Handle the case when the variant is not found
+    if (selectedVariantPrice) {
+      return selectedVariantPrice[variant.toLowerCase()] * quantity;
+    } else {
+      return 0; // Handle the case when the variant is not found
+    }
+  };
+
+  const dispatch = useDispatch();
+
+  function addToCart() {
+    dispatch(addtocart(pizza, quantity, variant));
   }
-};
-
 
   return (
     <div className='shadow-md p-3 mb-5 bg-white rounded'>
@@ -30,7 +39,11 @@ const calculatePrice = () => {
       <div className="flex flex-row pt-5">
         <div className="w-1/2 pr-4">
           <p className='text-lg font-medium mb-2'>Variants</p>
-          <select className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400' value={variant} onChange={(e) => setVariant(e.target.value)}>
+          <select
+            className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400'
+            value={variant}
+            onChange={(e) => setVariant(e.target.value)}
+          >
             {pizza.variants.map((variant) => (
               <option key={variant} value={variant}>
                 {variant}
@@ -40,7 +53,11 @@ const calculatePrice = () => {
         </div>
         <div className="w-1/2">
           <p className='text-lg font-medium mb-2'>Quantity</p>
-          <select className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400' value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+          <select
+            className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-400'
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          >
             {[...Array(10).keys()].map((i) => (
               <option key={i + 1} value={i + 1}>
                 {i + 1}
@@ -60,7 +77,10 @@ const calculatePrice = () => {
       </div>
 
       <div className='mt-4'>
-        <button className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full'>
+        <button
+          className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full'
+          onClick={addToCart}
+        >
           Add to Cart
         </button>
       </div>

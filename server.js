@@ -1,12 +1,14 @@
 const express = require('express');
+
 const db = require('./db');
-const Pizza = require('./modals/pizzamodal');
+
+const Pizza = require('./modals/pizzamodal'); 
 const app = express();
 const pizzaroutes = require('./routes/pizzaroutes');
 
 app.use(express.json());
 
-// Use the corrected path without the trailing slash
+
 app.use('/api/pizzas', pizzaroutes);
 
 app.get('/', (req, res) => {
